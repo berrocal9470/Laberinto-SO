@@ -26,3 +26,21 @@
 	"DAOtxt.h"
 	"Laberinto.h"
 
+1554267737 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/main.c
+	<stdio.h>
+	<stdlib.h>
+	"Juego.h"
+
+1554267828 /home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/include/Juego.h
+	"DAOtxt.h"
+	"Laberinto.h"
+
+1554490146 /home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/include/DAOtxt.h
+	"Laberinto.h"
+
+1554262110 /home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/include/Laberinto.h
+
+1554489804 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/src/Juego.c
+	<stdio.h>
+	"Juego.h"
+
