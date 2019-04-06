@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1554267737 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto/main.c
+	<stdio.h>
+	<stdlib.h>
+	"Juego.h"
+
+1554262110 /home/greivin/Escritorio/Compi/Progra 1/Laberinto/include/Laberinto.h
+
+1554526004 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto/src/DAOtxt.c
+	<stdio.h>
+	<stdlib.h>
+	"DAOtxt.h"
+
+1554490146 /home/greivin/Escritorio/Compi/Progra 1/Laberinto/include/DAOtxt.h
+	"Laberinto.h"
+
+1554172655 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto/src/Laberinto.c
+	<stdio.h>
+	"Laberinto.h"
+
+1554489804 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto/src/Juego.c
+	<stdio.h>
+	"Juego.h"
+
+1554267828 /home/greivin/Escritorio/Compi/Progra 1/Laberinto/include/Juego.h
+	"DAOtxt.h"
+	"Laberinto.h"
+
