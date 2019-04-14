@@ -15,6 +15,8 @@ typedef struct Juego
 int Juego_init(Juego *self);
 
 void Juego_leerArchivo(Juego *self);
-void Juego_pintar(Juego *self);
+void Juego_pintar(char *campos, int filas, int columnas);
+void Juego_jugar(Juego *self);
+void *Juego_avanzar(void * arg);
 
 #endif // JUEGO_H

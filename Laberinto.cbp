@@ -33,9 +33,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Linker>
+			<Add library="pthread" />
+		</Linker>
 		<Unit filename="include/DAOtxt.h" />
 		<Unit filename="include/Juego.h" />
 		<Unit filename="include/Laberinto.h" />
+		<Unit filename="include/Recorrido.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
