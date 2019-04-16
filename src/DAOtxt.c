@@ -5,7 +5,7 @@
 int DAOtxt_init(DAOtxt *self){
     strcpy(self->nombreArchivo, "laberintos/"); //direccion
 
-    strcat(self->nombreArchivo, "laberinto1");  //nombre
+    strcat(self->nombreArchivo, "laberinto2");  //nombre
     //strcat(self->nombreArchivo, "lab2-profe");
     return 0;
 }

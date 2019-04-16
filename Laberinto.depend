@@ -49,3 +49,32 @@
 	<stdlib.h>
 	"DAOtxt.h"
 
+1555362482 source:/home/evelio/Laberinto-SO/main.c
+	<stdio.h>
+	<stdlib.h>
+	"Juego.h"
+
+1555270609 /home/evelio/Laberinto-SO/include/Juego.h
+	"DAOtxt.h"
+	"Laberinto.h"
+
+1555270609 /home/evelio/Laberinto-SO/include/DAOtxt.h
+	"Laberinto.h"
+
+1555270609 /home/evelio/Laberinto-SO/include/Laberinto.h
+
+1555373463 source:/home/evelio/Laberinto-SO/src/DAOtxt.c
+	<stdio.h>
+	<stdlib.h>
+	"DAOtxt.h"
+
+1555377023 source:/home/evelio/Laberinto-SO/src/Juego.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<pthread.h>
+	"Juego.h"
+	"Recorrido.h"
+
+1555270609 /home/evelio/Laberinto-SO/include/Recorrido.h
+
