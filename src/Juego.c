@@ -12,6 +12,7 @@ typedef int bool;
 #define true  1
 #define false 0
 bool terminado = false;
+bool turn = true;
 
 int Juego_init(Juego *self){
     DAOtxt_init(&self->txt);
@@ -34,6 +35,7 @@ void Juego_leerArchivo(Juego *self){
     ----> Le añade bordes al laberinto <----
 */
 void Juego_pintar(char *campos, int filas, int columnas){
+    turn = true;
     int celdas = filas * columnas;
 
     //borde superior
@@ -89,17 +91,22 @@ void Juego_pintar(char *campos, int filas, int columnas){
     }
 
     printf("\n");
+    turn = false;
 }
 
 /**
     Imprime la informaciòn final de un hilo
 */
-void imp_s_juego_dir(long id, int ubicacion, int cantPasos, int estado){
+void imp_s_juego_dir(long id, int ubicacion, int cantPasos, int estado, int nfilas){
+    while(turn);
+    int i = ubicacion / nfilas;
+    int j = ubicacion - (i*nfilas);
+
     printf("%s","----------------------------------------------------------------------------\n");
     printf("%s","Hilo: ");
     printf("%ld",id);
     printf("%s",". Ubicación final: ");
-    printf("%d",ubicacion);
+    printf("(%d,%d)",i,j);
     printf("%s",". Recorrió: ");
     printf("%d",cantPasos);
     printf("%s"," casillas. Estado: ");
@@ -139,7 +146,7 @@ void * juego_direccion(void * arg){
 
     while(juego[ubicacion]!='*'){
         if(juego[ubicacion]=='/'){      //El unico que da solucion
-            imp_s_juego_dir(id, ubicacion, cantPasos+1, 1);
+            imp_s_juego_dir(id, ubicacion, cantPasos+1, 1, fila);
             break;
         }
 
@@ -149,7 +156,7 @@ void * juego_direccion(void * arg){
                 else juego[ubicacion]='^';
 
                 if(ubicacion+1<=0){
-                    imp_s_juego_dir(id, ubicacion+fila, cantPasos, 0);
+                    imp_s_juego_dir(id, ubicacion+fila, cantPasos, 0, fila);
                     break;
                 }
             }else{
@@ -157,7 +164,7 @@ void * juego_direccion(void * arg){
                 else juego[ubicacion]='v';
 
                 if(ubicacion+1>fila*columna){
-                    imp_s_juego_dir(id, ubicacion-fila, cantPasos, 0);
+                    imp_s_juego_dir(id, ubicacion-fila, cantPasos, 0, fila);
                     break;
                 }
             }
@@ -172,10 +179,12 @@ void * juego_direccion(void * arg){
                     r2.cantPasos = cantPasos+1;
                     r2.direccion = 2;
                     r2.ubicacion = ubicacion-1;
-                    pthread_t h2 = hijos[cant_hijos];
+                    int a = cant_hijos;
                     cant_hijos++;
-                    pthread_create(&h2, NULL, juego_direccion, (void *)&r2);
-                    pthread_join(h2, NULL);
+                    pthread_create(&hijos[a], NULL, juego_direccion, (void *)&r2);
+                    usleep(500000);
+                    //printf("1-%ld\n",hijos[a]);
+                    //pthread_join(hijos[a], NULL);
                 }
             }
             if((ubicacion+1)%columna!=0){
@@ -188,10 +197,12 @@ void * juego_direccion(void * arg){
                     r2.cantPasos = cantPasos+1;
                     r2.direccion = 3;
                     r2.ubicacion = ubicacion+1;
-                    pthread_t h2 = hijos[cant_hijos];
+                    int a = cant_hijos;
                     cant_hijos++;
-                    pthread_create(&h2, NULL, juego_direccion, (void *)&r2);
-                    pthread_join(h2, NULL);
+                    pthread_create(&hijos[a], NULL, juego_direccion, (void *)&r2);
+                    usleep(500000);
+                    //printf("2-%ld\n",hijos[a]);
+                    //pthread_join(hijos[a], NULL);
                 }
             }
 
@@ -216,10 +227,12 @@ void * juego_direccion(void * arg){
                 r2.cantPasos = cantPasos+1;
                 r2.direccion = 0;
                 r2.ubicacion = ubicacion-fila;
-                pthread_t h2 = hijos[cant_hijos];
+                int a = cant_hijos;
                 cant_hijos++;
-                pthread_create(&h2, NULL, juego_direccion, (void *)&r2);
-                pthread_join(h2, NULL);
+                pthread_create(&hijos[a], NULL, juego_direccion, (void *)&r2);
+                usleep(500000);
+                //printf("3-%ld\n",hijos[a]);
+                //pthread_join(hijos[a], NULL);
             }
             if((juego[ubicacion+fila]==' ' || juego[ubicacion+fila]=='/')&&(ubicacion+fila<fila*columna)){
                 //printf("%s","Espacio vacio abajo \n");
@@ -230,22 +243,24 @@ void * juego_direccion(void * arg){
                 r2.cantPasos = cantPasos+1;
                 r2.direccion = 1;
                 r2.ubicacion = ubicacion+fila;
-                pthread_t h2 = hijos[cant_hijos];
+                int a = cant_hijos;
                 cant_hijos++;
-                pthread_create(&h2, NULL, juego_direccion, (void *)&r2);
-                pthread_join(h2, NULL);
+                pthread_create(&hijos[a], NULL, juego_direccion, (void *)&r2);
+                usleep(500000);
+                //printf("4-%ld\n",hijos[a]);
+                //pthread_join(hijos[a], NULL);
             }
 
             if(direccion==2){
                 if((ubicacion)%columna==0){
-                    imp_s_juego_dir(id, ubicacion, cantPasos+1, 0);
+                    imp_s_juego_dir(id, ubicacion, cantPasos+1, 0, fila);
                     break;
                 }
                 ubicacion=ubicacion-1;
             }
             else{
                 if((ubicacion+1)%columna==0){
-                    imp_s_juego_dir(id, ubicacion, cantPasos+1, 0);
+                    imp_s_juego_dir(id, ubicacion, cantPasos+1, 0, fila);
                     break;
                 }
                 ubicacion=ubicacion+1;
@@ -255,10 +270,6 @@ void * juego_direccion(void * arg){
         cantPasos = cantPasos + 1;
         usleep(500000);
     }
-
-    /*for(int i=0; i<cant_hijos; i++){
-        pthread_join(hijos[i], NULL);
-    }*/
 
     if(juego[ubicacion]=='*'){
         if(direccion==0){
@@ -270,10 +281,15 @@ void * juego_direccion(void * arg){
         }else{
             ubicacion=ubicacion-1;
         }
-        imp_s_juego_dir(id, ubicacion, cantPasos, 0);
+        imp_s_juego_dir(id, ubicacion, cantPasos, 0, fila);
     }
 
-    return NULL;
+    for(int i=0; i<cant_hijos; i++){
+        pthread_join(hijos[i], NULL);
+    }
+
+    pthread_exit(NULL);
+    //return NULL;
 }
 
 /**
@@ -321,5 +337,7 @@ void Juego_jugar(Juego *self){
     pthread_join(h1, NULL);
     terminado = true;
     pthread_join(h_impresion, NULL);
+
     //Juego_pintar(juego, self->laberinto.filas, self->laberinto.columnas);
+    pthread_exit(NULL);
 }
