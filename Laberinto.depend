@@ -40,11 +40,15 @@
 
 1554262110 /home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/include/Laberinto.h
 
-1555207450 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/src/Juego.c
+1555529118 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/src/Juego.c
 	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<pthread.h>
 	"Juego.h"
+	"Recorrido.h"
 
-1555207267 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/src/DAOtxt.c
+1555524483 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/src/DAOtxt.c
 	<stdio.h>
 	<stdlib.h>
 	"DAOtxt.h"
@@ -77,4 +81,6 @@
 	"Recorrido.h"
 
 1555270609 /home/evelio/Laberinto-SO/include/Recorrido.h
+
+1555205777 /home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/include/Recorrido.h
 
