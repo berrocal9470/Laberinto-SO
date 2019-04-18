@@ -40,7 +40,7 @@
 
 1554262110 /home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/include/Laberinto.h
 
-1555540934 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/src/Juego.c
+1555549505 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/src/Juego.c
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
@@ -48,7 +48,7 @@
 	"Juego.h"
 	"Recorrido.h"
 
-1555541191 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/src/DAOtxt.c
+1555549698 source:/home/greivin/Escritorio/Compi/Progra 1/Laberinto-SO/src/DAOtxt.c
 	<stdio.h>
 	<stdlib.h>
 	"DAOtxt.h"

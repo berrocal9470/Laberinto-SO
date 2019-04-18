@@ -132,8 +132,8 @@ void * juego_direccion(void * arg){
     struct s_juego_dir * actual;
     actual = (struct s_juego_dir *)arg;
     long id = actual->id;
-    int fila = actual->columna;
-    int columna = actual->fila;
+    int fila = actual->fila;
+    int columna = actual->columna;
     int direccion = actual->direccion;
     int ubicacion = actual->ubicacion;
     int cantPasos = actual->cantPasos;
@@ -206,8 +206,8 @@ void * juego_direccion(void * arg){
                 }
             }
 
-            if(direccion==0) ubicacion=ubicacion-fila;
-            else ubicacion=ubicacion+fila;
+            if(direccion==0) ubicacion=ubicacion-columna;
+            else ubicacion=ubicacion+columna;
         }
         else{
             if(direccion==2){
@@ -218,7 +218,7 @@ void * juego_direccion(void * arg){
                 else juego[ubicacion]='>';
             }
 
-            if((juego[ubicacion-fila]==' ' || juego[ubicacion-fila]=='/')&&(ubicacion-fila>=0)){
+            if((juego[ubicacion-columna]==' ' || juego[ubicacion-columna]=='/')&&(ubicacion-columna>=0)){
                 //printf("%s","Espacio vacio arriba \n");
                 struct s_juego_dir r2;
                 r2.id = pthread_self();
@@ -226,7 +226,7 @@ void * juego_direccion(void * arg){
                 r2.columna = columna;
                 r2.cantPasos = cantPasos+1;
                 r2.direccion = 0;
-                r2.ubicacion = ubicacion-fila;
+                r2.ubicacion = ubicacion-columna;
                 int a = cant_hijos;
                 cant_hijos++;
                 pthread_create(&hijos[a], NULL, juego_direccion, (void *)&r2);
@@ -234,7 +234,7 @@ void * juego_direccion(void * arg){
                 //printf("3-%ld\n",hijos[a]);
                 //pthread_join(hijos[a], NULL);
             }
-            if((juego[ubicacion+fila]==' ' || juego[ubicacion+fila]=='/')&&(ubicacion+fila<fila*columna)){
+            if((juego[ubicacion+columna]==' ' || juego[ubicacion+columna]=='/')&&(ubicacion+columna<fila*columna)){
                 //printf("%s","Espacio vacio abajo \n");
                 struct s_juego_dir r2;
                 r2.id = pthread_self();
@@ -242,7 +242,7 @@ void * juego_direccion(void * arg){
                 r2.columna = columna;
                 r2.cantPasos = cantPasos+1;
                 r2.direccion = 1;
-                r2.ubicacion = ubicacion+fila;
+                r2.ubicacion = ubicacion+columna;
                 int a = cant_hijos;
                 cant_hijos++;
                 pthread_create(&hijos[a], NULL, juego_direccion, (void *)&r2);
@@ -273,9 +273,9 @@ void * juego_direccion(void * arg){
 
     if(juego[ubicacion]=='*'){
         if(direccion==0){
-            ubicacion=ubicacion+fila;
+            ubicacion=ubicacion+columna;
         }else if(direccion==1){
-            ubicacion=ubicacion-fila;
+            ubicacion=ubicacion-columna;
         }else if(direccion==2){
             ubicacion=ubicacion+1;
         }else{
